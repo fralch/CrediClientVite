@@ -31,14 +31,13 @@
             </label>
             <input
               type="text"
-              class="bg-gray-200 px-6 py-3 rounded-md focus:outline-none ml-8 md:px-4 md:py-2"
+              class="input bg-gray-200 px-6 py-3 rounded-md focus:outline-none ml-8 md:px-4 md:py-2"
+              v-model="clave"
+              @click="viewKeyboard = false"
             />
           </div>
-
-          <!-- error message -->
-
           <label class="text-red-500">Error message</label>
-          <!-- error message -->
+          <div class="simple-keyboard" v-if="!viewKeyboard"></div>
           <button
             key="login"
             class="px-6 py-3 rounded-md focus:outline-none ml-8 m-10 bg-credi-blue text-white hover:bg-credi-blue transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
@@ -63,15 +62,58 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import Keyboard from "simple-keyboard";
+import "simple-keyboard/build/css/index.css";
 
 const email = ref("");
 const password = ref("");
 const rememberMe = ref(false);
+const viewKeyboard = ref(false);
 
 const handleSubmit = () => {
   console.log("Email:", email.value);
   console.log("Password:", password.value);
   console.log("Remember Me:", rememberMe.value);
 };
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Layout original del teclado
+const originalLayout = [
+  "1 2 3 4 5 6 7 8 9 0",
+  "q w e r t y u i o p",
+  "a s d f g h j k l",
+  "z x c v b n ñ m",
+];
+
+// Layout barajado
+const shuffledLayout = originalLayout.map((row) =>
+  shuffleArray(row.split(" ")).join(" ")
+);
+
+onMounted(() => {
+  const keyboard = new Keyboard({
+    layout: {
+      default: shuffledLayout,
+    },
+    onChange: (input) => onChange(input),
+    onKeyPress: (button) => onKeyPress(button),
+  });
+
+  function onChange(input) {
+    document.querySelector(".input").value = input;
+    console.log("Input changed", input);
+  }
+
+  function onKeyPress(button) {
+    console.log("Button pressed", button);
+  }
+});
 </script>
