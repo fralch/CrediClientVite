@@ -33,11 +33,16 @@
               type="text"
               class="input bg-gray-200 px-6 py-3 rounded-md focus:outline-none ml-8 md:px-4 md:py-2"
               v-model="clave"
-              @click="viewKeyboard = false"
+              @focus="handleFocus"
+              @blur="handleBlur"
             />
           </div>
           <label class="text-red-500">Error message</label>
-          <div class="simple-keyboard" v-if="!viewKeyboard"></div>
+          <div
+            class="simple-keyboard"
+            id="keyboard"
+            style="display: none"
+          ></div>
           <button
             key="login"
             class="px-6 py-3 rounded-md focus:outline-none ml-8 m-10 bg-credi-blue text-white hover:bg-credi-blue transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
@@ -54,6 +59,7 @@
           </div>
         </div>
       </form>
+      <button key="viewKeyboard" @click="fnViewKey">View Keyboard</button>
     </div>
     <div
       class="flex-1 bg-[url('@/assets/login/img-senora.svg')] bg-no-repeat bg-cover text-white p-10 flex flex-col justify-center"
@@ -69,7 +75,7 @@ import "simple-keyboard/build/css/index.css";
 const email = ref("");
 const password = ref("");
 const rememberMe = ref(false);
-const viewKeyboard = ref(false);
+const inputFocused = ref(false);
 
 const handleSubmit = () => {
   console.log("Email:", email.value);
@@ -83,6 +89,20 @@ function shuffleArray(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
+}
+
+function fnViewKey() {
+  const keyboard = document.getElementById("keyboard");
+  if (keyboard.style.display == "none") {
+    keyboard.style.display = "block";
+  } else {
+    keyboard.style.display = "none";
+  }
+}
+
+// Función que se ejecuta cuando el input gana el foco
+function handleFocus() {
+  keyboard.style.display = "block";
 }
 
 // Layout original del teclado
