@@ -35,6 +35,7 @@
               v-model="clave"
               @focus="handleFocus"
               @blur="handleBlur"
+              ref="claveInput"
             />
           </div>
           <label class="text-red-500">Error message</label>
@@ -72,27 +73,30 @@ import { onMounted, ref } from "vue";
 import Keyboard from "simple-keyboard";
 import "simple-keyboard/build/css/index.css";
 
-const email = ref("");
-const password = ref("");
-const rememberMe = ref(false);
-const inputFocused = ref(false);
+const clave = ref("");
+const claveInput = ref(null);
 
-const handleSubmit = () => {
-  console.log("Email:", email.value);
-  console.log("Password:", password.value);
-  console.log("Remember Me:", rememberMe.value);
-};
+let keyboard;
 
 function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
+  const fixedKeys = ["{shift}"];
+  const shuffledKeys = array.filter((key) => !fixedKeys.includes(key));
+  const fixedKeysIndexes = array.map((key) =>
+    fixedKeys.includes(key) ? key : null
+  );
+
+  for (let i = shuffledKeys.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    [shuffledKeys[i], shuffledKeys[j]] = [shuffledKeys[j], shuffledKeys[i]];
   }
-  return array;
+
+  let index = 0;
+  return array.map((key) =>
+    fixedKeysIndexes[index] ? fixedKeysIndexes[index++] : shuffledKeys.shift()
+  );
 }
 
 function fnViewKey() {
-  const keyboard = document.getElementById("keyboard");
   if (keyboard.style.display == "none") {
     keyboard.style.display = "block";
   } else {
@@ -102,7 +106,17 @@ function fnViewKey() {
 
 // Función que se ejecuta cuando el input gana el foco
 function handleFocus() {
-  keyboard.style.display = "block";
+  document.getElementById("keyboard").style.display = "block";
+  claveInput.value.addEventListener("keydown", preventKeydown); // esto hace que el input no se pueda escribir desde el teclado fisico
+}
+
+// Función que se ejecuta cuando el input pierde el foco
+function handleBlur() {
+  claveInput.value.removeEventListener("keydown", preventKeydown); // elimina el evento para que no se pueda escribir
+}
+
+function preventKeydown(event) {
+  event.preventDefault();
 }
 
 // Layout original del teclado
@@ -110,30 +124,68 @@ const originalLayout = [
   "1 2 3 4 5 6 7 8 9 0",
   "q w e r t y u i o p",
   "a s d f g h j k l",
-  "z x c v b n ñ m",
+  "{shift} z x c v b n m",
+  "{bksp}",
+];
+
+const shiftedLayout = [
+  "1 2 3 4 5 6 7 8 9 0",
+  "Q W E R T Y U I O P",
+  "A S D F G H J K L",
+  "{shift} Z X C V B N M",
+  "{bksp}",
 ];
 
 // Layout barajado
-const shuffledLayout = originalLayout.map((row) =>
+const shuffledLayoutOriginal = originalLayout.map((row) =>
   shuffleArray(row.split(" ")).join(" ")
 );
 
+const shuffledLayoutShifted = shiftedLayout.map((row) =>
+  shuffleArray(row.split(" ")).join(" ")
+);
+
+
 onMounted(() => {
-  const keyboard = new Keyboard({
+  keyboard = new Keyboard({
     layout: {
-      default: shuffledLayout,
+      default: shuffledLayoutOriginal,
+      shift: shuffledLayoutShifted,
     },
+    display: {
+      "{bksp}": "⌫",
+      "{space}": " ",
+      "{shift}": "⇧",
+    },
+    buttonTheme: [
+      {
+        class: "hg-button-special",
+        buttons: "{arrowleft} {space} {shift}",
+      },
+    ],
     onChange: (input) => onChange(input),
     onKeyPress: (button) => onKeyPress(button),
   });
 
   function onChange(input) {
-    document.querySelector(".input").value = input;
+    clave.value = input;
     console.log("Input changed", input);
   }
 
   function onKeyPress(button) {
     console.log("Button pressed", button);
+    if (button === "{bksp}") {
+      clave.value = clave.value.slice(0, -1);
+      keyboard.setInput(clave.value);
+    } else if (button === "{shift}") {
+      keyboard.setOptions({
+        layoutName:
+          keyboard.options.layoutName === "default" ? "shift" : "default",
+      });
+    } else {
+      clave.value += button;
+      keyboard.setInput(clave.value);
+    }
   }
 });
 </script>
