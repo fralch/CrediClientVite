@@ -39,7 +39,7 @@
             />
             <button
               type="button"
-              class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-600"
+              class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-600 bg-[#E5E7EB] rounded-md"
               @click="togglePasswordVisibility"
             >
               <svg
