@@ -22,7 +22,7 @@
               class="bg-gray-200 px-6 py-3 rounded-md focus:outline-none ml-8 md:px-4 md:py-2"
             />
           </div>
-          <div class="mt-4">
+          <div class="mt-4 relative">
             <label
               for="clave"
               class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block w-40 md:w-32 md:px-4 md:py-2"
@@ -30,13 +30,58 @@
               CLAVE
             </label>
             <input
-              type="text"
+              :type="showPassword ? 'text' : 'password'"
               class="input bg-gray-200 px-6 py-3 rounded-md focus:outline-none ml-8 md:px-4 md:py-2"
               v-model="clave"
               @focus="handleFocus"
               @blur="handleBlur"
               ref="claveInput"
             />
+            <button
+              type="button"
+              class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-600"
+              @click="togglePasswordVisibility"
+            >
+              <svg
+                v-if="showPassword"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-eye"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                <path
+                  d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"
+                />
+              </svg>
+              <svg
+                v-if="!showPassword"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-eye-off"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" />
+                <path
+                  d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87"
+                />
+                <path d="M3 3l18 18" />
+              </svg>
+            </button>
           </div>
           <label class="text-red-500">Error message</label>
           <div
@@ -67,7 +112,6 @@
     ></div>
   </div>
 </template>
-
 <script setup>
 import { onMounted, ref } from "vue";
 import Keyboard from "simple-keyboard";
@@ -75,8 +119,13 @@ import "simple-keyboard/build/css/index.css";
 
 const clave = ref("");
 const claveInput = ref(null);
+const showPassword = ref(false);
 
 let keyboard;
+
+function togglePasswordVisibility() {
+  showPassword.value = !showPassword.value;
+}
 
 function shuffleArray(array) {
   const fixedKeys = ["{shift}"];
@@ -144,7 +193,6 @@ const shuffledLayoutOriginal = originalLayout.map((row) =>
 const shuffledLayoutShifted = shiftedLayout.map((row) =>
   shuffleArray(row.split(" ")).join(" ")
 );
-
 
 onMounted(() => {
   keyboard = new Keyboard({
