@@ -112,22 +112,23 @@
     ></div>
   </div>
 </template>
-<script setup>
+
+<script setup lang="ts">
 import { onMounted, ref } from "vue";
 import Keyboard from "simple-keyboard";
 import "simple-keyboard/build/css/index.css";
 
 const clave = ref("");
-const claveInput = ref(null);
+const claveInput = ref<HTMLInputElement | null>(null);
 const showPassword = ref(false);
 
-let keyboard;
+let keyboard: Keyboard;
 
 function togglePasswordVisibility() {
   showPassword.value = !showPassword.value;
 }
 
-function shuffleArray(array) {
+function shuffleArray(array: string[]) {
   const fixedKeys = ["{shift}"];
   const shuffledKeys = array.filter((key) => !fixedKeys.includes(key));
   const fixedKeysIndexes = array.map((key) =>
@@ -146,25 +147,25 @@ function shuffleArray(array) {
 }
 
 function fnViewKey() {
-  if (keyboard.style.display == "none") {
-    keyboard.style.display = "block";
+  if (keyboard.options.container.style.display === "none") {
+    keyboard.options.container.style.display = "block";
   } else {
-    keyboard.style.display = "none";
+    keyboard.options.container.style.display = "none";
   }
 }
 
 // Función que se ejecuta cuando el input gana el foco
 function handleFocus() {
-  document.getElementById("keyboard").style.display = "block";
-  claveInput.value.addEventListener("keydown", preventKeydown); // esto hace que el input no se pueda escribir desde el teclado fisico
+  document.getElementById("keyboard")!.style.display = "block";
+  claveInput.value?.addEventListener("keydown", preventKeydown); // esto hace que el input no se pueda escribir desde el teclado fisico
 }
 
 // Función que se ejecuta cuando el input pierde el foco
 function handleBlur() {
-  claveInput.value.removeEventListener("keydown", preventKeydown); // elimina el evento para que no se pueda escribir
+  claveInput.value?.removeEventListener("keydown", preventKeydown); // elimina el evento para que no se pueda escribir
 }
 
-function preventKeydown(event) {
+function preventKeydown(event: KeyboardEvent) {
   event.preventDefault();
 }
 
@@ -215,12 +216,12 @@ onMounted(() => {
     onKeyPress: (button) => onKeyPress(button),
   });
 
-  function onChange(input) {
+  function onChange(input: string) {
     clave.value = input;
     console.log("Input changed", input);
   }
 
-  function onKeyPress(button) {
+  function onKeyPress(button: string) {
     console.log("Button pressed", button);
     if (button === "{bksp}") {
       clave.value = clave.value.slice(0, -1);
@@ -236,4 +237,10 @@ onMounted(() => {
     }
   }
 });
+
+// Definición de la función handleSubmit
+function handleSubmit() {
+  console.log("Form submitted with clave:", clave.value);
+  // Aquí puedes agregar la lógica para manejar el envío del formulario
+}
 </script>
