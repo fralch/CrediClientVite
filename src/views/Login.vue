@@ -7,35 +7,36 @@
         <img
           src="./../assets/logo.svg"
           alt=""
-          class="mx-auto mb-10 2xl:w-full xl:w-10/12 lg:w-8/12 md:w-3/4"
+          class="mx-auto mb-10 2xl:w-full xl:w-10/12 lg:w-8/12 md:w-3/4 w-3/5"
         />
         <div class="flex flex-col">
           <div class="mt-4">
             <label
               for="dni"
-              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block w-40 md:w-32 md:px-4 md:py-2"
+              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-32 md:px-4 md:py-2 w-20 sm:px-2 sm:py-1"
             >
               DNI
             </label>
             <input
-              type="text"
-              class="bg-gray-200 px-6 py-3 rounded-md focus:outline-none ml-8 md:px-4 md:py-2"
+              type="number"
+              class="bg-gray-200 px-6 py-3 rounded-md focus:outline-none md:ml-8 ml-2 md:px-4 md:py-2"
             />
           </div>
           <div class="mt-4 relative">
             <label
               for="clave"
-              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block w-40 md:w-32 md:px-4 md:py-2"
+              class="bg-credi-green text-white px-4 py-3 rounded-md focus:outline-none inline-block md:w-32 md:px-6 md:py-2"
             >
               CLAVE
             </label>
             <input
               :type="showPassword ? 'text' : 'password'"
-              class="input bg-gray-200 px-6 py-3 rounded-md focus:outline-none ml-8 md:px-4 md:py-2"
+              class="input bg-gray-200 px-6 py-3 rounded-md focus:outline-none md:ml-8 ml-2 md:px-4 md:py-2"
               v-model="clave"
               @focus="handleFocus"
               @blur="handleBlur"
               ref="claveInput"
+              readonly
             />
             <button
               type="button"
@@ -85,7 +86,7 @@
           </div>
           <label class="text-red-500">Error message</label>
           <div
-            class="simple-keyboard"
+            class="simple-keyboard hidden"
             id="keyboard"
             style="display: none"
           ></div>
@@ -95,7 +96,7 @@
           >
             Iniciar sesión
           </button>
-          <div class="text-center">
+          <div class="text-center mt-4">
             <router-link
               to="/register"
               class="text-credi-blue hover:text-credi-green transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
@@ -105,13 +106,16 @@
           </div>
         </div>
       </form>
-      <button key="viewKeyboard" @click="fnViewKey">View Keyboard</button>
     </div>
+
+    <!-- Esta es la imagen que se ocultará en móviles -->
     <div
-      class="flex-1 bg-[url('@/assets/login/img-senora.svg')] bg-no-repeat bg-cover text-white p-10 flex flex-col justify-center"
+      class="hidden md:block md:flex-1 md:bg-[url('@/assets/login/img-senora.svg')] md:bg-no-repeat md:bg-cover text-white p-10 flex flex-col justify-center"
     ></div>
   </div>
 </template>
+
+
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
@@ -157,11 +161,13 @@ function fnViewKey() {
 // Función que se ejecuta cuando el input gana el foco
 function handleFocus() {
   document.getElementById("keyboard")!.style.display = "block";
+  document.getElementById("keyboard")?.removeAttribute("disabled");
   claveInput.value?.addEventListener("keydown", preventKeydown); // esto hace que el input no se pueda escribir desde el teclado fisico
 }
 
 // Función que se ejecuta cuando el input pierde el foco
 function handleBlur() {
+  document.getElementById("keyboard")?.setAttribute("disabled", "true");
   claveInput.value?.removeEventListener("keydown", preventKeydown); // elimina el evento para que no se pueda escribir
 }
 

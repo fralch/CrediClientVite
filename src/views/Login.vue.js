@@ -121,13 +121,13 @@ let __VLS_resolvedLocalAndGlobalComponents;
 __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("flex h-screen") }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("flex-1 bg-[url('@/assets/login/triangulos-login.svg')] bg-repeat-y bg-left-top flex flex-col justify-center h-screen") }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.form, __VLS_intrinsicElements.form)({ ...{ onSubmit: (__VLS_ctx.handleSubmit) }, ...{ class: ("m-auto") }, });
-__VLS_elementAsFunction(__VLS_intrinsicElements.img)({ src: ("./../assets/logo.svg"), alt: (""), ...{ class: ("mx-auto mb-10 2xl:w-full xl:w-10/12 lg:w-8/12 md:w-3/4") }, });
+__VLS_elementAsFunction(__VLS_intrinsicElements.img)({ src: ("./../assets/logo.svg"), alt: (""), ...{ class: ("mx-auto mb-10 2xl:w-full xl:w-10/12 lg:w-8/12 md:w-3/4 w-3/4") }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("flex flex-col") }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("mt-4") }, });
-__VLS_elementAsFunction(__VLS_intrinsicElements.label, __VLS_intrinsicElements.label)({ for: ("dni"), ...{ class: ("bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block w-40 md:w-32 md:px-4 md:py-2") }, });
+__VLS_elementAsFunction(__VLS_intrinsicElements.label, __VLS_intrinsicElements.label)({ for: ("dni"), ...{ class: ("bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-32 md:px-4 md:py-2 w-20 sm:px-2 sm:py-1") }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.input)({ type: ("text"), ...{ class: ("bg-gray-200 px-6 py-3 rounded-md focus:outline-none ml-8 md:px-4 md:py-2") }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("mt-4 relative") }, });
-__VLS_elementAsFunction(__VLS_intrinsicElements.label, __VLS_intrinsicElements.label)({ for: ("clave"), ...{ class: ("bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block w-40 md:w-32 md:px-4 md:py-2") }, });
+__VLS_elementAsFunction(__VLS_intrinsicElements.label, __VLS_intrinsicElements.label)({ for: ("clave"), ...{ class: ("bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-32 md:px-4 md:py-2") }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.input)({ ...{ onFocus: (__VLS_ctx.handleFocus) }, ...{ onBlur: (__VLS_ctx.handleBlur) }, type: ((__VLS_ctx.showPassword ? 'text' : 'password')), ...{ class: ("input bg-gray-200 px-6 py-3 rounded-md focus:outline-none ml-8 md:px-4 md:py-2") }, ref: ("claveInput"), });
 (__VLS_ctx.clave);
 // @ts-ignore
@@ -147,9 +147,9 @@ if (!__VLS_ctx.showPassword) {
     __VLS_elementAsFunction(__VLS_intrinsicElements.path)({ d: ("M3 3l18 18"), });
 }
 __VLS_elementAsFunction(__VLS_intrinsicElements.label, __VLS_intrinsicElements.label)({ ...{ class: ("text-red-500") }, });
-__VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("simple-keyboard") }, id: ("keyboard"), ...{ style: ({}) }, });
+__VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("simple-keyboard hidden") }, id: ("keyboard"), ...{ style: ({}) }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.button, __VLS_intrinsicElements.button)({ key: ("login"), ...{ class: ("px-6 py-3 rounded-md focus:outline-none ml-8 m-10 bg-credi-blue text-white hover:bg-credi-blue transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110") }, });
-__VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("text-center") }, });
+__VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("text-center mt-4") }, });
 const __VLS_0 = __VLS_resolvedLocalAndGlobalComponents.RouterLink;
 /** @type { [typeof __VLS_components.RouterLink, typeof __VLS_components.routerLink, typeof __VLS_components.RouterLink, typeof __VLS_components.routerLink, ] } */
 // @ts-ignore
@@ -157,8 +157,7 @@ const __VLS_1 = __VLS_asFunctionalComponent(__VLS_0, new __VLS_0({ to: ("/regist
 const __VLS_2 = __VLS_1({ to: ("/register"), ...{ class: ("text-credi-blue hover:text-credi-green transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110") }, }, ...__VLS_functionalComponentArgsRest(__VLS_1));
 __VLS_nonNullable(__VLS_5.slots).default;
 const __VLS_5 = __VLS_pickFunctionalComponentCtx(__VLS_0, __VLS_2);
-__VLS_elementAsFunction(__VLS_intrinsicElements.button, __VLS_intrinsicElements.button)({ ...{ onClick: (__VLS_ctx.fnViewKey) }, key: ("viewKeyboard"), });
-__VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("flex-1 bg-[url('@/assets/login/img-senora.svg')] bg-no-repeat bg-cover text-white p-10 flex flex-col justify-center") }, });
+__VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("hidden md:block md:flex-1 md:bg-[url('@/assets/login/img-senora.svg')] md:bg-no-repeat md:bg-cover text-white p-10 flex flex-col justify-center") }, });
 __VLS_styleScopedClasses['flex'];
 __VLS_styleScopedClasses['h-screen'];
 __VLS_styleScopedClasses['flex-1'];
@@ -176,6 +175,7 @@ __VLS_styleScopedClasses['2xl:w-full'];
 __VLS_styleScopedClasses['xl:w-10/12'];
 __VLS_styleScopedClasses['lg:w-8/12'];
 __VLS_styleScopedClasses['md:w-3/4'];
+__VLS_styleScopedClasses['w-3/4'];
 __VLS_styleScopedClasses['flex'];
 __VLS_styleScopedClasses['flex-col'];
 __VLS_styleScopedClasses['mt-4'];
@@ -186,10 +186,12 @@ __VLS_styleScopedClasses['py-3'];
 __VLS_styleScopedClasses['rounded-md'];
 __VLS_styleScopedClasses['focus:outline-none'];
 __VLS_styleScopedClasses['inline-block'];
-__VLS_styleScopedClasses['w-40'];
 __VLS_styleScopedClasses['md:w-32'];
 __VLS_styleScopedClasses['md:px-4'];
 __VLS_styleScopedClasses['md:py-2'];
+__VLS_styleScopedClasses['w-20'];
+__VLS_styleScopedClasses['sm:px-2'];
+__VLS_styleScopedClasses['sm:py-1'];
 __VLS_styleScopedClasses['bg-gray-200'];
 __VLS_styleScopedClasses['px-6'];
 __VLS_styleScopedClasses['py-3'];
@@ -207,7 +209,6 @@ __VLS_styleScopedClasses['py-3'];
 __VLS_styleScopedClasses['rounded-md'];
 __VLS_styleScopedClasses['focus:outline-none'];
 __VLS_styleScopedClasses['inline-block'];
-__VLS_styleScopedClasses['w-40'];
 __VLS_styleScopedClasses['md:w-32'];
 __VLS_styleScopedClasses['md:px-4'];
 __VLS_styleScopedClasses['md:py-2'];
@@ -239,6 +240,7 @@ __VLS_styleScopedClasses['icons-tabler-outline'];
 __VLS_styleScopedClasses['icon-tabler-eye-off'];
 __VLS_styleScopedClasses['text-red-500'];
 __VLS_styleScopedClasses['simple-keyboard'];
+__VLS_styleScopedClasses['hidden'];
 __VLS_styleScopedClasses['px-6'];
 __VLS_styleScopedClasses['py-3'];
 __VLS_styleScopedClasses['rounded-md'];
@@ -255,6 +257,7 @@ __VLS_styleScopedClasses['transform'];
 __VLS_styleScopedClasses['hover:-translate-y-1'];
 __VLS_styleScopedClasses['hover:scale-110'];
 __VLS_styleScopedClasses['text-center'];
+__VLS_styleScopedClasses['mt-4'];
 __VLS_styleScopedClasses['text-credi-blue'];
 __VLS_styleScopedClasses['hover:text-credi-green'];
 __VLS_styleScopedClasses['transition'];
@@ -263,10 +266,12 @@ __VLS_styleScopedClasses['ease-in-out'];
 __VLS_styleScopedClasses['transform'];
 __VLS_styleScopedClasses['hover:-translate-y-1'];
 __VLS_styleScopedClasses['hover:scale-110'];
-__VLS_styleScopedClasses['flex-1'];
-__VLS_styleScopedClasses['bg-[url(\'@/assets/login/img-senora.svg\')]'];
-__VLS_styleScopedClasses['bg-no-repeat'];
-__VLS_styleScopedClasses['bg-cover'];
+__VLS_styleScopedClasses['hidden'];
+__VLS_styleScopedClasses['md:block'];
+__VLS_styleScopedClasses['md:flex-1'];
+__VLS_styleScopedClasses['md:bg-[url(\'@/assets/login/img-senora.svg\')]'];
+__VLS_styleScopedClasses['md:bg-no-repeat'];
+__VLS_styleScopedClasses['md:bg-cover'];
 __VLS_styleScopedClasses['text-white'];
 __VLS_styleScopedClasses['p-10'];
 __VLS_styleScopedClasses['flex'];
@@ -288,7 +293,6 @@ const __VLS_internalComponent = (await import('vue')).defineComponent({
             claveInput: claveInput,
             showPassword: showPassword,
             togglePasswordVisibility: togglePasswordVisibility,
-            fnViewKey: fnViewKey,
             handleFocus: handleFocus,
             handleBlur: handleBlur,
             handleSubmit: handleSubmit,
