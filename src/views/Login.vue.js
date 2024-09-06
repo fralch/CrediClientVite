@@ -31,10 +31,12 @@ function fnViewKey() {
 // Función que se ejecuta cuando el input gana el foco
 function handleFocus() {
     document.getElementById("keyboard").style.display = "block";
+    document.getElementById("keyboard")?.removeAttribute("disabled");
     claveInput.value?.addEventListener("keydown", preventKeydown); // esto hace que el input no se pueda escribir desde el teclado fisico
 }
 // Función que se ejecuta cuando el input pierde el foco
 function handleBlur() {
+    document.getElementById("keyboard")?.setAttribute("disabled", "true");
     claveInput.value?.removeEventListener("keydown", preventKeydown); // elimina el evento para que no se pueda escribir
 }
 function preventKeydown(event) {
@@ -121,14 +123,14 @@ let __VLS_resolvedLocalAndGlobalComponents;
 __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("flex h-screen") }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("flex-1 bg-[url('@/assets/login/triangulos-login.svg')] bg-repeat-y bg-left-top flex flex-col justify-center h-screen") }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.form, __VLS_intrinsicElements.form)({ ...{ onSubmit: (__VLS_ctx.handleSubmit) }, ...{ class: ("m-auto") }, });
-__VLS_elementAsFunction(__VLS_intrinsicElements.img)({ src: ("./../assets/logo.svg"), alt: (""), ...{ class: ("mx-auto mb-10 2xl:w-full xl:w-10/12 lg:w-8/12 md:w-3/4 w-3/4") }, });
+__VLS_elementAsFunction(__VLS_intrinsicElements.img)({ src: ("./../assets/logo.svg"), alt: (""), ...{ class: ("mx-auto mb-10 2xl:w-full xl:w-10/12 lg:w-8/12 md:w-3/4 w-3/5") }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("flex flex-col") }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("mt-4") }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.label, __VLS_intrinsicElements.label)({ for: ("dni"), ...{ class: ("bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-32 md:px-4 md:py-2 w-20 sm:px-2 sm:py-1") }, });
-__VLS_elementAsFunction(__VLS_intrinsicElements.input)({ type: ("text"), ...{ class: ("bg-gray-200 px-6 py-3 rounded-md focus:outline-none ml-8 md:px-4 md:py-2") }, });
+__VLS_elementAsFunction(__VLS_intrinsicElements.input)({ type: ("number"), ...{ class: ("bg-gray-200 px-6 py-3 rounded-md focus:outline-none md:ml-8 ml-2 md:px-4 md:py-2") }, });
 __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("mt-4 relative") }, });
-__VLS_elementAsFunction(__VLS_intrinsicElements.label, __VLS_intrinsicElements.label)({ for: ("clave"), ...{ class: ("bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-32 md:px-4 md:py-2") }, });
-__VLS_elementAsFunction(__VLS_intrinsicElements.input)({ ...{ onFocus: (__VLS_ctx.handleFocus) }, ...{ onBlur: (__VLS_ctx.handleBlur) }, type: ((__VLS_ctx.showPassword ? 'text' : 'password')), ...{ class: ("input bg-gray-200 px-6 py-3 rounded-md focus:outline-none ml-8 md:px-4 md:py-2") }, ref: ("claveInput"), });
+__VLS_elementAsFunction(__VLS_intrinsicElements.label, __VLS_intrinsicElements.label)({ for: ("clave"), ...{ class: ("bg-credi-green text-white px-4 py-3 rounded-md focus:outline-none inline-block md:w-32 md:px-6 md:py-2") }, });
+__VLS_elementAsFunction(__VLS_intrinsicElements.input)({ ...{ onFocus: (__VLS_ctx.handleFocus) }, ...{ onBlur: (__VLS_ctx.handleBlur) }, type: ((__VLS_ctx.showPassword ? 'text' : 'password')), ...{ class: ("input bg-gray-200 px-6 py-3 rounded-md focus:outline-none md:ml-8 ml-2 md:px-4 md:py-2") }, ref: ("claveInput"), readonly: (true), });
 (__VLS_ctx.clave);
 // @ts-ignore
 __VLS_ctx.claveInput;
@@ -175,7 +177,7 @@ __VLS_styleScopedClasses['2xl:w-full'];
 __VLS_styleScopedClasses['xl:w-10/12'];
 __VLS_styleScopedClasses['lg:w-8/12'];
 __VLS_styleScopedClasses['md:w-3/4'];
-__VLS_styleScopedClasses['w-3/4'];
+__VLS_styleScopedClasses['w-3/5'];
 __VLS_styleScopedClasses['flex'];
 __VLS_styleScopedClasses['flex-col'];
 __VLS_styleScopedClasses['mt-4'];
@@ -197,20 +199,21 @@ __VLS_styleScopedClasses['px-6'];
 __VLS_styleScopedClasses['py-3'];
 __VLS_styleScopedClasses['rounded-md'];
 __VLS_styleScopedClasses['focus:outline-none'];
-__VLS_styleScopedClasses['ml-8'];
+__VLS_styleScopedClasses['md:ml-8'];
+__VLS_styleScopedClasses['ml-2'];
 __VLS_styleScopedClasses['md:px-4'];
 __VLS_styleScopedClasses['md:py-2'];
 __VLS_styleScopedClasses['mt-4'];
 __VLS_styleScopedClasses['relative'];
 __VLS_styleScopedClasses['bg-credi-green'];
 __VLS_styleScopedClasses['text-white'];
-__VLS_styleScopedClasses['px-6'];
+__VLS_styleScopedClasses['px-4'];
 __VLS_styleScopedClasses['py-3'];
 __VLS_styleScopedClasses['rounded-md'];
 __VLS_styleScopedClasses['focus:outline-none'];
 __VLS_styleScopedClasses['inline-block'];
 __VLS_styleScopedClasses['md:w-32'];
-__VLS_styleScopedClasses['md:px-4'];
+__VLS_styleScopedClasses['md:px-6'];
 __VLS_styleScopedClasses['md:py-2'];
 __VLS_styleScopedClasses['input'];
 __VLS_styleScopedClasses['bg-gray-200'];
@@ -218,7 +221,8 @@ __VLS_styleScopedClasses['px-6'];
 __VLS_styleScopedClasses['py-3'];
 __VLS_styleScopedClasses['rounded-md'];
 __VLS_styleScopedClasses['focus:outline-none'];
-__VLS_styleScopedClasses['ml-8'];
+__VLS_styleScopedClasses['md:ml-8'];
+__VLS_styleScopedClasses['ml-2'];
 __VLS_styleScopedClasses['md:px-4'];
 __VLS_styleScopedClasses['md:py-2'];
 __VLS_styleScopedClasses['absolute'];
