@@ -7,7 +7,7 @@
 
     <div
       class="flex-1 bg-[url('@/assets/login/trianngulos.svg')] bg-repeat-y bg-right-top flex flex-col justify-center"
-      id="registrar"
+      id="validarDNI"
     >
       <form class="m-auto" @submit.prevent="handleSubmit">
         <img
