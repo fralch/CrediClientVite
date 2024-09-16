@@ -36,10 +36,10 @@
         </div>
 
         <div class="flex flex-col">
-          <div class="mt-4">
+          <div class="mt-4 flex items-center">
             <label
               for="dni"
-              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-48 md:px-4 md:py-2 w-24 sm:px-2 sm:py-1"
+              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-44 md:px-4 md:py-2 w-28 sm:px-2 sm:py-1"
             >
               DNI
             </label>
@@ -50,12 +50,18 @@
               readonly
             />
           </div>
-          <div class="mt-4">
+          <div class="mt-4 flex items-center">
             <label
-              for="dni"
-              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-48 md:px-4 md:py-2 w-24 sm:px-2 sm:py-1"
+              for="paterno"
+              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-44 md:px-4 md:py-2 w-28 sm:px-2 sm:py-1 hidden md:block"
             >
               APELLIDO PATERNO
+            </label>
+            <label
+              for="paterno"
+              class="bg-credi-green text-white px-4 py-2 rounded-md focus:outline-none inline-block w-28 sm:px-2 sm:py-1 md:hidden"
+            >
+              A.PATERNO
             </label>
             <input
               type="text"
@@ -64,12 +70,18 @@
               readonly
             />
           </div>
-          <div class="mt-4">
+          <div class="mt-4 flex items-center">
             <label
-              for="dni"
-              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-48 md:px-4 md:py-2 w-24 sm:px-2 sm:py-1"
+              for="materno"
+              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-48 md:px-4 md:py-2 w-24 sm:px-2 sm:py-1 hidden md:block"
             >
               APELLIDO MATERNO
+            </label>
+            <label
+              for="materno"
+              class="bg-credi-green text-white px-4 py-2 rounded-md focus:outline-none inline-block w-28 sm:px-2 sm:py-1 md:hidden"
+            >
+              A.MATERNO
             </label>
             <input
               type="text"
@@ -78,10 +90,10 @@
               readonly
             />
           </div>
-          <div class="mt-4">
+          <div class="mt-4 flex items-center">
             <label
-              for="dni"
-              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-48 md:px-4 md:py-2 w-24 sm:px-2 sm:py-1"
+              for="nombres"
+              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-48 md:px-4 md:py-2 w-28 sm:px-2 sm:py-1"
             >
               NOMBRES
             </label>
@@ -92,28 +104,36 @@
               readonly
             />
           </div>
-          <div class="mt-4">
+          <div class="mt-4 flex items-center">
             <label
               for="dni"
-              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-48 md:px-4 md:py-2 w-24 sm:px-2 sm:py-1"
+              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-48 md:px-4 md:py-2 w-28 sm:px-2 sm:py-1"
             >
               CLAVE
             </label>
             <input
               type="text"
-              class="input bg-gray-100 px-6 py-3 rounded-md focus:outline-none md:ml-8 ml-2 md:px-4 md:py-2 border-gray-300 border-2"
+              class="input px-6 py-3 rounded-md focus:outline-none md:ml-8 ml-2 md:px-4 md:py-2 border-gray-300 border-2"
+              placeholder="ingresar clave"
             />
           </div>
-          <div class="mt-4">
+          <div class="mt-4 flex items-center">
             <label
-              for="dni"
-              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-48 md:px-4 md:py-2 w-24 sm:px-2 sm:py-1"
+              for="paterno"
+              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-48 md:px-4 md:py-2 w-24 sm:px-2 sm:py-1 hidden md:block"
             >
               REPETIR CLAVE
             </label>
+            <label
+              for="paterno"
+              class="bg-credi-green text-white px-4 py-2 rounded-md focus:outline-none inline-block w-28 sm:px-2 sm:py-1 md:hidden"
+            >
+              REPETIR
+            </label>
             <input
               type="text"
-              class="input bg-gray-100 px-6 py-3 rounded-md focus:outline-none md:ml-8 ml-2 md:px-4 md:py-2 border-gray-300 border-2"
+              class="input px-6 py-3 rounded-md focus:outline-none md:ml-8 ml-2 md:px-4 md:py-2 border-gray-300 border-2"
+              placeholder="repetir clave"
             />
           </div>
 
