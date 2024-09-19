@@ -146,6 +146,7 @@
           <button
             key="login"
             class="px-6 py-3 rounded-md focus:outline-none ml-8 m-10 bg-credi-blue text-white hover:bg-credi-blue transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+            @click="Registrando"
           >
             Registrar
           </button>
@@ -175,12 +176,12 @@ function mostrarCelularFun() {
   }
 }
 
-function validarDNI() {
+function Registrando() {
   Swal.fire({
     icon: "success",
-    title: "Validando",
-    text: "Hemos enviado un mensaje de whatsapp al numero de celular principal que tenemos registrado, por favor completar el registro desde alli.",
-    confirmButtonText: "Continuar",
+    title: "Exito",
+    text: "Se ha realizado el registro exitosamente",
+    confirmButtonText: "OK",
     confirmButtonColor: "#254C97",
   }).then((result) => {});
 }

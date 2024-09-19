@@ -93,12 +93,13 @@
           <button
             key="login"
             class="px-6 py-3 rounded-md focus:outline-none ml-8 m-10 bg-credi-blue text-white hover:bg-credi-blue transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+            @click="Logear"
           >
             Iniciar sesión
           </button>
           <div class="text-center mt-4">
             <router-link
-              to="/register"
+              to="/registrar"
               class="text-credi-blue hover:text-credi-green transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
             >
               Crear cuenta
@@ -115,12 +116,11 @@
   </div>
 </template>
 
-
-
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import Keyboard from "simple-keyboard";
 import "simple-keyboard/build/css/index.css";
+import Swal from "sweetalert2";
 
 const clave = ref("");
 const claveInput = ref<HTMLInputElement | null>(null);
@@ -160,15 +160,30 @@ function fnViewKey() {
 
 // Función que se ejecuta cuando el input gana el foco
 function handleFocus() {
-  document.getElementById("keyboard")!.style.display = "block";
-  document.getElementById("keyboard")?.removeAttribute("disabled");
-  claveInput.value?.addEventListener("keydown", preventKeydown); // esto hace que el input no se pueda escribir desde el teclado fisico
+  const keyboardElement = document.getElementById("keyboard");
+  if (keyboardElement) {
+    keyboardElement.style.display = "block";
+    keyboardElement.removeAttribute("disabled");
+  }
+
+  if (claveInput.value) {
+    // Solo si está definido
+    const inputElement = claveInput.value;
+    inputElement.addEventListener("keydown", preventKeydown);
+  }
 }
 
-// Función que se ejecuta cuando el input pierde el foco
 function handleBlur() {
-  document.getElementById("keyboard")?.setAttribute("disabled", "true");
-  claveInput.value?.removeEventListener("keydown", preventKeydown); // elimina el evento para que no se pueda escribir
+  const keyboardElement = document.getElementById("keyboard");
+  if (keyboardElement) {
+    keyboardElement.setAttribute("disabled", "true");
+  }
+
+  if (claveInput.value) {
+    // Solo si está definido
+    const inputElement = claveInput.value;
+    inputElement.removeEventListener("keydown", preventKeydown);
+  }
 }
 
 function preventKeydown(event: KeyboardEvent) {
@@ -248,5 +263,40 @@ onMounted(() => {
 function handleSubmit() {
   console.log("Form submitted with clave:", clave.value);
   // Aquí puedes agregar la lógica para manejar el envío del formulario
+}
+
+function Logear() {
+  Swal.fire({
+    icon: "error",
+    title: "Error",
+    text: "Usuario y/o contraseña incorrectos!",
+    confirmButtonText: "OK",
+    confirmButtonColor: "#254C97",
+    footer:
+      '<a href="#" id="restaurar-clave" style="color: #254C97; text-decoration: underline;">Olvide mi contraseña</a>',
+  });
+
+  // Agrega un listener al enlace del footer cuando se cargue la alerta
+  const footer = Swal.getFooter();
+  if (footer) {
+    const link = footer.querySelector("#restaurar-clave");
+    if (link) {
+      // Verifica si el enlace no es null
+      link.addEventListener("click", function (event) {
+        event.preventDefault(); // Evitar el comportamiento predeterminado del enlace
+        RestaurarClave(); // Llamar a la función RestaurarClave
+      });
+    }
+  }
+}
+
+function RestaurarClave() {
+  Swal.fire({
+    icon: "warning",
+    title: "Restaurar contraseña",
+    text: "Hemos enviado un mensaje a su correo para que pueda restaurar la contraseña",
+    confirmButtonText: "OK",
+    confirmButtonColor: "#254C97",
+  });
 }
 </script>
