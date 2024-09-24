@@ -39,7 +39,7 @@
           <div class="mt-4 flex items-center">
             <label
               for="dni"
-              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-44 md:px-4 md:py-2 w-28 sm:px-2 sm:py-1"
+              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-48 md:px-4 md:py-2 w-28 sm:px-2 sm:py-1"
             >
               DNI
             </label>
@@ -53,7 +53,7 @@
           <div class="mt-4 flex items-center">
             <label
               for="paterno"
-              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-44 md:px-4 md:py-2 w-28 sm:px-2 sm:py-1 hidden md:block"
+              class="bg-credi-green text-white px-6 py-3 rounded-md focus:outline-none inline-block md:w-48 md:px-4 md:py-2 w-28 sm:px-2 sm:py-1 hidden md:block"
             >
               APELLIDO PATERNO
             </label>
