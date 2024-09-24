@@ -99,7 +99,7 @@
           </button>
           <div class="text-center mt-4">
             <router-link
-              to="/registrar"
+              to="/validardni"
               class="text-credi-blue hover:text-credi-green transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
             >
               Crear cuenta

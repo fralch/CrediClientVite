@@ -104,7 +104,11 @@ function validarDNI() {
     text: "Hemos enviado un mensaje de whatsapp al numero de celular principal que tenemos registrado, por favor completar el registro desde alli.",
     confirmButtonText: "Continuar",
     confirmButtonColor: "#254C97",
-  }).then((result) => {});
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "/registrar";
+    }
+  });
 }
 
 function handleSubmit() {
